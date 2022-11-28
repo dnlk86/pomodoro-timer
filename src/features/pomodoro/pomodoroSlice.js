@@ -10,11 +10,15 @@ export const PomodoroSlice = createSlice({
     name: "pomodoro",
     initialState,
     reducers: {
-        increment: (state) => {
-            state.value += 1;
+        increment: (state, action) => {
+            if (state[action.payload] < 60) {
+                state[action.payload] += 1;
+            }
         },
-        decrement: (state) => {
-            state.value -= 1;
+        decrement: (state, action) => {
+            if (state[action.payload] > 1) {
+                state[action.payload] -= 1;
+            }
         },
     },
 });
