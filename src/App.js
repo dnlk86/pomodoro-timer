@@ -1,11 +1,11 @@
 import React from "react";
-import { PomodoroTimer } from "./features/pomodoro/PomodoroTimer";
+import { Pomodoro } from "./features/pomodoro/Pomodoro";
 import "./App.css";
 
 function App() {
     return (
         <div className="App">
-            <PomodoroTimer />
+            <Pomodoro />
         </div>
     );
 }

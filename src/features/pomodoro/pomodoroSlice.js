@@ -25,6 +25,6 @@ export const PomodoroSlice = createSlice({
 
 export const { increment, decrement } = PomodoroSlice.actions;
 
-export const selectCount = (state) => state.counter.value;
+export const selectStatus = (state) => state.pomodoro.status;
 
 export default PomodoroSlice.reducer;

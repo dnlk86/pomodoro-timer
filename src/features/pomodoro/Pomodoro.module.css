@@ -1,0 +1,81 @@
+.pomodoroBody {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pomodoroContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+}
+
+.pomodoroLeft {
+    position: relative;
+    left: 10px;
+    width: 175px;
+    height: 200px;
+    background-color: red;
+    border-radius: 50% 30% 0 50%;
+}
+
+.pomodoroRight {
+    position: relative;
+    right: 10px;
+    width: 175px;
+    height: 200px;
+    background-color: red;
+    border-radius: 30% 50% 50% 0;
+}
+
+.leavesContainer {
+    position: relative;
+    top: 25px;
+    left: -50px;
+}
+
+.leafLeft {
+    position: absolute;
+    top: -100px;
+    width: 0px;
+    height: 0px;
+    border: 50px solid;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: green;
+    z-index: 10;
+    transform: rotate(-30deg);
+}
+
+.leafMiddle {
+    position: absolute;
+    top: -200px;
+    width: 0px;
+    height: 0px;
+    border-top: 100px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid green;
+    border-left: 50px solid transparent;
+    z-index: 10;
+}
+
+.leafRight {
+    position: absolute;
+    top: -100px;
+    width: 0px;
+    height: 0px;
+    border: 50px solid;
+    border-top-color: transparent;
+    border-right-color: green;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    z-index: 10;
+    transform: rotate(30deg);
+}
