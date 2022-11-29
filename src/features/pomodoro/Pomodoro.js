@@ -17,6 +17,10 @@ export function Pomodoro() {
                 </div>
                 <div className={styles.pomodoroLeft}></div>
                 <div className={styles.pomodoroRight}></div>
+                <div className={styles.timerDisplay}>
+                    <div className={styles.minutes}>30</div>
+                    <div className={styles.seconds}>59</div>
+                </div>
             </div>
         </div>
     );

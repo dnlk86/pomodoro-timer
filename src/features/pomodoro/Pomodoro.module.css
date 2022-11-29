@@ -1,8 +1,8 @@
 .pomodoroBackground {
-    width: 500px;
-    height: 500px;
+    width: 485px;
+    height: 485px;
     border-radius: 50%;
-    background-color: blueviolet;
+    background-color: var(--timer-background);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +21,7 @@
     left: -160px;
     width: 175px;
     height: 200px;
-    background-color: red;
+    background-color: var(--pomodoro-color);
     border-radius: 50% 30% 0 50%;
 }
 
@@ -43,7 +43,7 @@
     right: -160px;
     width: 175px;
     height: 200px;
-    background-color: red;
+    background-color: var(--pomodoro-color);
     border-radius: 30% 50% 50% 0;
 }
 
@@ -62,7 +62,7 @@
 .leavesContainer {
     position: relative;
     top: -75px;
-    /* top: -25px; */
+    /* top: 5px; */
     left: -50px;
     z-index: -1;
 }
@@ -87,7 +87,7 @@
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    border-left-color: green;
+    border-left-color: var(--leaf-color);
     z-index: 10000;
     transform: rotate(-30deg);
 }
@@ -99,7 +99,7 @@
     height: 0px;
     border-top: 100px solid transparent;
     border-right: 50px solid transparent;
-    border-bottom: 100px solid green;
+    border-bottom: 100px solid var(--leaf-color);
     border-left: 50px solid transparent;
     z-index: 10;
 }
@@ -111,9 +111,39 @@
     height: 0px;
     border: 50px solid;
     border-top-color: transparent;
-    border-right-color: green;
+    border-right-color: var(--leaf-color);
     border-bottom-color: transparent;
     border-left-color: transparent;
     z-index: 10;
     transform: rotate(30deg);
+}
+
+.timerDisplay {
+    position: relative;
+    width: 100%;
+    top: -40px;
+}
+
+.minutes,
+.seconds {
+    position: absolute;
+    width: 90px;
+    height: 80px;
+    background-color: var(--display-background);
+    border: 3px solid white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    color: white;
+    font-family: "Orbitron", sans-serif;
+}
+
+.minutes {
+    left: -95px;
+}
+
+.seconds {
+    left: 5px;
 }
