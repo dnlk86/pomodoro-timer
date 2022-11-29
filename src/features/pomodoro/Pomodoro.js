@@ -8,13 +8,13 @@ export function Pomodoro() {
     const dispatch = useDispatch();
 
     return (
-        <div className={styles.pomodoroBody}>
-            <div className={styles.leavesContainer}>
-                <div className={styles.leafLeft}></div>
-                <div className={styles.leafMiddle}></div>
-                <div className={styles.leafRight}></div>
-            </div>
-            <div className={styles.pomodoroContainer}>
+        <div className={styles.pomodoroBackground}>
+            <div className={styles.pomodoroBody}>
+                <div className={styles.leavesContainer}>
+                    <div className={styles.leafLeft}></div>
+                    <div className={styles.leafMiddle}></div>
+                    <div className={styles.leafRight}></div>
+                </div>
                 <div className={styles.pomodoroLeft}></div>
                 <div className={styles.pomodoroRight}></div>
             </div>
