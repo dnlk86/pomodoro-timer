@@ -26,3 +26,59 @@
         transform: rotate(-360deg);
     }
 }
+
+#session-label,
+#break-label {
+    grid-area: label;
+    font-size: 1.75rem;
+}
+
+#session-length,
+#break-length {
+    grid-area: time;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+#session-increment,
+#break-increment {
+    grid-area: inc;
+}
+
+#session-decrement,
+#break-decrement {
+    grid-area: dec;
+}
+
+#session-increment,
+#break-increment,
+#session-decrement,
+#break-decrement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    font-size: 3rem;
+    color: white;
+    overflow: hidden;
+}
+
+#session-increment:hover,
+#break-increment:hover,
+#session-decrement:hover,
+#break-decrement:hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+#session-increment:hover,
+#break-increment:hover {
+    color: var(--leaf-color);
+}
+#session-decrement:hover,
+#break-decrement:hover {
+    color: var(--pomodoro-color);
+}

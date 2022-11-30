@@ -62,7 +62,6 @@
 .leavesContainer {
     position: relative;
     top: -75px;
-    /* top: 5px; */
     left: -50px;
     z-index: -1;
 }
@@ -137,7 +136,6 @@
     align-items: center;
     font-size: 2.5rem;
     color: white;
-    font-family: "Orbitron", sans-serif;
 }
 
 .minutes {
@@ -146,4 +144,31 @@
 
 .seconds {
     left: 5px;
+}
+
+/* CONTROLS */
+
+.controls {
+    position: relative;
+    top: -150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 300px;
+}
+
+.sessionContainer,
+.breakContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        "label label"
+        "time inc"
+        "time dec";
+    gap: 10px 10px;
+    width: 100px;
+    z-index: 99999;
+    color: white;
 }
