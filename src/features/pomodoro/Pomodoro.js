@@ -44,7 +44,8 @@ export function Pomodoro() {
                 </div>
                 <div className={styles.pomodoroLeft}></div>
                 <div className={styles.pomodoroRight}></div>
-                <div className={styles.timerDisplay}>
+                <h1 id="timer-label">PomoTimer</h1>
+                <div id="time-left" className={styles.timerDisplay}>
                     <div className={styles.minutes}>30</div>
                     <div className={styles.seconds}>59</div>
                 </div>

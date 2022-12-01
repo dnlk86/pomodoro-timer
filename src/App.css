@@ -87,3 +87,12 @@
     color: var(--pomodoro-color);
     border-color: var(--pomodoro-color);
 }
+
+#timer-label {
+    position: absolute;
+    top: -65px;
+    left: -105px;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    color: white;
+}
