@@ -15,15 +15,23 @@ export function Pomodoro() {
                 <div className={styles.sessionContainer}>
                     <h3 id="session-label">Timer</h3>
                     <h4 id="session-length">25</h4>
-                    <span id="session-increment">+</span>
-                    <span id="session-decrement">-</span>
+                    <div id="session-increment" className={styles.buttons}>
+                        <span>+</span>
+                    </div>
+                    <div id="session-decrement" className={styles.buttons}>
+                        <span>-</span>
+                    </div>
                 </div>
                 {/* BREAK */}
                 <div className={styles.breakContainer}>
                     <h3 id="break-label">Break</h3>
                     <h4 id="break-length">5</h4>
-                    <span id="break-increment">+</span>
-                    <span id="break-decrement">-</span>
+                    <div id="break-increment" className={styles.buttons}>
+                        <span>+</span>
+                    </div>
+                    <div id="break-decrement" className={styles.buttons}>
+                        <span>-</span>
+                    </div>
                 </div>
             </div>
 

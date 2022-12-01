@@ -59,11 +59,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     font-size: 3rem;
     color: white;
-    overflow: hidden;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding-bottom: 8px;
+    margin-top: 3px;
 }
 
 #session-increment:hover,
@@ -77,8 +80,10 @@
 #session-increment:hover,
 #break-increment:hover {
     color: var(--leaf-color);
+    border-color: var(--leaf-color);
 }
 #session-decrement:hover,
 #break-decrement:hover {
     color: var(--pomodoro-color);
+    border-color: var(--pomodoro-color);
 }
