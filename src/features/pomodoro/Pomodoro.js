@@ -16,10 +16,10 @@ export function Pomodoro() {
                     <h3 id="session-label">Timer</h3>
                     <h4 id="session-length">25</h4>
                     <div id="session-increment" className={styles.buttons}>
-                        <span>+</span>
+                        <div>+</div>
                     </div>
                     <div id="session-decrement" className={styles.buttons}>
-                        <span>-</span>
+                        <div>-</div>
                     </div>
                 </div>
                 {/* BREAK */}
@@ -27,12 +27,16 @@ export function Pomodoro() {
                     <h3 id="break-label">Break</h3>
                     <h4 id="break-length">5</h4>
                     <div id="break-increment" className={styles.buttons}>
-                        <span>+</span>
+                        <div>+</div>
                     </div>
                     <div id="break-decrement" className={styles.buttons}>
-                        <span>-</span>
+                        <div>-</div>
                     </div>
                 </div>
+                {/* START / STOP */}
+                <div id="start_stop" className={styles.start}></div>
+                {/* RESET */}
+                <div id="reset" className={styles.reset}></div>
             </div>
 
             {/* POMODORO */}

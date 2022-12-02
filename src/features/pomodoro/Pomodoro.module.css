@@ -157,24 +157,30 @@
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas:
         "label label"
-        "time inc"
-        "time dec";
-    gap: 5px 10px;
-    width: 100px;
+        "time time"
+        "inc dec";
+    gap: 0 5px;
+    width: 104px;
+    height: 10px;
     z-index: 99999;
     color: white;
 }
 
-/* .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 35px;
-    font-size: 3rem;
-    color: white;
-    border: 2px solid white;
+.start,
+.reset {
+    position: absolute;
+    top: 130px;
+    width: 75px;
+    height: 75px;
+    background-color: transparent;
+    border: 3px solid white;
     border-radius: 50%;
-    padding-bottom: 8px;
-    margin-top: 3px;
-} */
+}
+
+.start {
+    left: -50px;
+}
+
+.reset {
+    right: -50px;
+}
