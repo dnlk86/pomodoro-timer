@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment, selectStatus } from "./pomodoroSlice";
+import {
+    changeStatus,
+    decrement,
+    increment,
+    selectTimer,
+    selectBreak,
+    selectStatus,
+} from "./pomodoroSlice";
 import styles from "./Pomodoro.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause, faRotate } from "@fortawesome/free-solid-svg-icons";
 
 export function Pomodoro() {
-    const count = useSelector(selectStatus);
+    const status = useSelector(selectStatus);
+    const timer = useSelector(selectTimer);
+    const pause = useSelector(selectBreak);
     const dispatch = useDispatch();
 
     return (
@@ -14,29 +25,67 @@ export function Pomodoro() {
                 {/* SESSION */}
                 <div className={styles.sessionContainer}>
                     <h3 id="session-label">Timer</h3>
-                    <h4 id="session-length">25</h4>
-                    <div id="session-increment" className={styles.buttons}>
+                    <h4 id="session-length">{timer}</h4>
+                    <div
+                        id="session-increment"
+                        className={styles.buttons}
+                        onClick={() => dispatch(increment("timer"))}
+                    >
                         <div>+</div>
                     </div>
-                    <div id="session-decrement" className={styles.buttons}>
+                    <div
+                        id="session-decrement"
+                        className={styles.buttons}
+                        onClick={() => dispatch(decrement("timer"))}
+                    >
                         <div>-</div>
                     </div>
                 </div>
                 {/* BREAK */}
                 <div className={styles.breakContainer}>
                     <h3 id="break-label">Break</h3>
-                    <h4 id="break-length">5</h4>
-                    <div id="break-increment" className={styles.buttons}>
+                    <h4 id="break-length">{pause}</h4>
+                    <div
+                        id="break-increment"
+                        className={styles.buttons}
+                        onClick={() => dispatch(increment("break"))}
+                    >
                         <div>+</div>
                     </div>
-                    <div id="break-decrement" className={styles.buttons}>
+                    <div
+                        id="break-decrement"
+                        className={styles.buttons}
+                        onClick={() => dispatch(decrement("break"))}
+                    >
                         <div>-</div>
                     </div>
                 </div>
                 {/* START / STOP */}
-                <div id="start_stop" className={styles.start}></div>
+                <div
+                    id="start_stop"
+                    className={styles.start}
+                    onClick={() =>
+                        status === "idle"
+                            ? dispatch(changeStatus("started"))
+                            : status === "paused"
+                            ? dispatch(changeStatus("started"))
+                            : dispatch(changeStatus("paused"))
+                    }
+                >
+                    {status === "idle" || status === "paused" ? (
+                        <FontAwesomeIcon icon={faPlay} />
+                    ) : (
+                        <FontAwesomeIcon icon={faPause} />
+                    )}
+                </div>
                 {/* RESET */}
-                <div id="reset" className={styles.reset}></div>
+                <div
+                    id="reset"
+                    className={styles.reset}
+                    onClick={() => dispatch(changeStatus("idle"))}
+                >
+                    <FontAwesomeIcon icon={faRotate} />
+                </div>
             </div>
 
             {/* POMODORO */}

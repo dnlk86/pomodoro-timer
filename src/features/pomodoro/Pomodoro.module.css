@@ -173,8 +173,21 @@
     width: 75px;
     height: 75px;
     background-color: transparent;
-    border: 3px solid white;
+    border: 5px solid white;
     border-radius: 50%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.start:hover,
+.reset:hover {
+    color: var(--leaf-color);
+    border-color: var(--leaf-color);
+    opacity: 0.75;
+    cursor: pointer;
 }
 
 .start {
