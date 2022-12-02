@@ -90,7 +90,7 @@
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: var(--leaf-color);
-    z-index: 10000;
+    z-index: 10;
     transform: rotate(-30deg);
 }
 
@@ -120,17 +120,13 @@
     transform: rotate(30deg);
 }
 
+/* TIMER */
 .timerDisplay {
-    position: relative;
-    width: 100%;
-    top: -20px;
-}
-
-.minutes,
-.seconds {
     position: absolute;
-    width: 90px;
-    height: 80px;
+    top: -20px;
+    left: -100px;
+    width: 200px;
+    height: 70px;
     background-color: var(--display-background);
     border: 3px solid white;
     border-radius: 5px;
@@ -139,14 +135,7 @@
     align-items: center;
     font-size: 2.5rem;
     color: white;
-}
-
-.minutes {
-    left: -95px;
-}
-
-.seconds {
-    left: 5px;
+    text-align: center;
 }
 
 /* CONTROLS */
