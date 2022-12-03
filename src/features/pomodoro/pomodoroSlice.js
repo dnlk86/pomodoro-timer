@@ -55,5 +55,6 @@ export const { changeStatus, increment, decrement, countdown } =
 export const selectTimer = (state) => state.pomodoro.timer;
 export const selectBreak = (state) => state.pomodoro.break;
 export const selectStatus = (state) => state.pomodoro.status;
+export const selectRemainingTime = (state) => state.pomodoro.remainingTime;
 
 export default PomodoroSlice.reducer;
