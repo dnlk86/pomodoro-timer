@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
     changeStatus,
     decrement,
     increment,
+    countdown,
     selectTimer,
     selectBreak,
     selectStatus,
@@ -17,6 +18,28 @@ export function Pomodoro() {
     const timer = useSelector(selectTimer);
     const pause = useSelector(selectBreak);
     const dispatch = useDispatch();
+
+    var interval = useRef();
+
+    function startCounting() {
+        interval.current = setInterval(() => {
+            dispatch(countdown());
+        }, 1000);
+    }
+
+    function stopCounting() {
+        clearInterval(interval.current);
+    }
+
+    const handleClick = () => {
+        if (status === "idle" || status === "pause") {
+            dispatch(changeStatus("start"));
+            startCounting();
+        } else {
+            dispatch(changeStatus("pause"));
+            stopCounting();
+        }
+    };
 
     return (
         <div className={styles.pomodoroBackground}>
@@ -64,15 +87,9 @@ export function Pomodoro() {
                 <div
                     id="start_stop"
                     className={styles.start}
-                    onClick={() =>
-                        status === "idle"
-                            ? dispatch(changeStatus("started"))
-                            : status === "paused"
-                            ? dispatch(changeStatus("started"))
-                            : dispatch(changeStatus("paused"))
-                    }
+                    onClick={handleClick}
                 >
-                    {status === "idle" || status === "paused" ? (
+                    {status === "idle" || status === "pause" ? (
                         <FontAwesomeIcon icon={faPlay} />
                     ) : (
                         <FontAwesomeIcon icon={faPause} />
@@ -82,7 +99,10 @@ export function Pomodoro() {
                 <div
                     id="reset"
                     className={styles.reset}
-                    onClick={() => dispatch(changeStatus("idle"))}
+                    onClick={() => {
+                        stopCounting(interval);
+                        dispatch(changeStatus("idle"));
+                    }}
                 >
                     <FontAwesomeIcon icon={faRotate} />
                 </div>

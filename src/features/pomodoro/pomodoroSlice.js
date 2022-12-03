@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     timer: 25,
     break: 5,
-    status: "idle", // status: idle, started, paused
+    status: "idle", // status: idle, start, pause, break, end
+    remainingTime: 1500, // seconds
 };
 
 export const PomodoroSlice = createSlice({
@@ -16,14 +17,19 @@ export const PomodoroSlice = createSlice({
                 case "idle":
                     state.timer = 25;
                     state.break = 5;
+                    state.remainingTime = state.timer * 60;
                     console.log("idle");
                     break;
-                case "started":
-                    console.log("started");
+                case "start":
+                    console.log("start");
+
                     break;
-                case "paused":
-                    console.log("paused");
+                case "pause":
+                    console.log("pause");
                     break;
+                case "break":
+                    state.remainingTime = state.break * 60;
+                    state.status = "break";
             }
         },
         increment: (state, action) => {
@@ -36,10 +42,15 @@ export const PomodoroSlice = createSlice({
                 state[action.payload] -= 1;
             }
         },
+        countdown: (state) => {
+            state.remainingTime -= 1;
+            console.log(state.remainingTime);
+        },
     },
 });
 
-export const { changeStatus, increment, decrement } = PomodoroSlice.actions;
+export const { changeStatus, increment, decrement, countdown } =
+    PomodoroSlice.actions;
 
 export const selectTimer = (state) => state.pomodoro.timer;
 export const selectBreak = (state) => state.pomodoro.break;
