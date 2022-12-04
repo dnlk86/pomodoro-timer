@@ -35,16 +35,22 @@ export const PomodoroSlice = createSlice({
         increment: (state, action) => {
             if (state[action.payload] < 60) {
                 state[action.payload] += 1;
+                state.remainingTime = state.timer * 60;
             }
         },
         decrement: (state, action) => {
             if (state[action.payload] > 1) {
                 state[action.payload] -= 1;
+                state.remainingTime = state.timer * 60;
             }
         },
         countdown: (state) => {
-            state.remainingTime -= 1;
-            console.log(state.remainingTime);
+            if (state.remainingTime > 0) {
+                state.remainingTime -= 1;
+                console.log(state.remainingTime);
+            } else {
+                state.status = "end";
+            }
         },
     },
 });
