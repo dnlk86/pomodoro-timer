@@ -12,7 +12,12 @@ import {
 } from "./pomodoroSlice";
 import styles from "./Pomodoro.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faPause, faRotate } from "@fortawesome/free-solid-svg-icons";
+import {
+    faPlay,
+    faPause,
+    faRotate,
+    faHeadphonesSimple,
+} from "@fortawesome/free-solid-svg-icons";
 
 export function Pomodoro() {
     const dispatch = useDispatch();
@@ -22,11 +27,24 @@ export function Pomodoro() {
     const pause = useSelector(selectBreak);
     const remainingTime = useSelector(selectRemainingTime);
 
-    let min = "00" + Math.floor(remainingTime / 60).toString();
-    min = min.substring(min.length - 2);
+    const handleTime = () => {
+        if (status === "start" && remainingTime === 0) {
+            stopCounting();
+            dispatch(changeStatus("break"));
+            startCounting();
+        } else if (status === "break" && remainingTime === 0) {
+            stopCounting();
+            dispatch(changeStatus("end"));
+        }
 
-    let sec = "00" + (remainingTime % 60).toString();
-    sec = sec.substring(sec.length - 2);
+        let min = "00" + Math.floor(remainingTime / 60).toString();
+        min = min.substring(min.length - 2);
+
+        let sec = "00" + (remainingTime % 60).toString();
+        sec = sec.substring(sec.length - 2);
+
+        return `${min}:${sec}`;
+    };
 
     var interval = useRef();
 
@@ -128,7 +146,8 @@ export function Pomodoro() {
                 <div className={styles.pomodoroRight}></div>
                 <h1 id="timer-label">PomoTimer</h1>
                 <div id="time-left" className={styles.timerDisplay}>
-                    {`${min}:${sec}`}
+                    {/* {`${min}:${sec}`} */}
+                    {handleTime()}
                 </div>
             </div>
         </div>

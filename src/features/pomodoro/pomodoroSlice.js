@@ -22,14 +22,17 @@ export const PomodoroSlice = createSlice({
                     break;
                 case "start":
                     console.log("start");
-
                     break;
                 case "pause":
                     console.log("pause");
                     break;
                 case "break":
                     state.remainingTime = state.break * 60;
-                    state.status = "break";
+                    console.log("break");
+                    break;
+                case "end":
+                    console.log("time is up!");
+                    break;
             }
         },
         increment: (state, action) => {
@@ -48,8 +51,6 @@ export const PomodoroSlice = createSlice({
             if (state.remainingTime > 0) {
                 state.remainingTime -= 1;
                 console.log(state.remainingTime);
-            } else {
-                state.status = "end";
             }
         },
     },
