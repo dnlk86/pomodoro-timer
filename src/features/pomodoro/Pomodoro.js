@@ -15,6 +15,7 @@ import {
 import styles from "./Pomodoro.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faRotate } from "@fortawesome/free-solid-svg-icons";
+import alarm from "../../audio/clock-alarm.mp3";
 
 export function Pomodoro() {
     const dispatch = useDispatch();
@@ -29,6 +30,7 @@ export function Pomodoro() {
         if (remainingTime < 0) {
             stopCounting();
             if (status === "session") {
+                document.getElementById("beep").play();
                 dispatch(changeStatus("break"));
                 startCounting();
             } else if (status === "break") {
@@ -128,6 +130,9 @@ export function Pomodoro() {
                     onClick={() => {
                         stopCounting();
                         dispatch(changeStatus("session"));
+                        let sound = document.getElementById("beep");
+                        sound.pause();
+                        sound.currentTime = 0;
                     }}
                 >
                     <FontAwesomeIcon icon={faRotate} />
@@ -148,6 +153,7 @@ export function Pomodoro() {
                     {handleTime()}
                 </div>
                 <h6 id="timer-label">{status.toUpperCase()}</h6>
+                <audio id="beep" src={alarm} preload="auto"></audio>
             </div>
         </div>
     );
