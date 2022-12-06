@@ -12,29 +12,26 @@ import {
 } from "./pomodoroSlice";
 import styles from "./Pomodoro.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faPlay,
-    faPause,
-    faRotate,
-    faHeadphonesSimple,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faPause, faRotate } from "@fortawesome/free-solid-svg-icons";
 
 export function Pomodoro() {
     const dispatch = useDispatch();
 
     const status = useSelector(selectStatus);
-    const timer = useSelector(selectTimer);
-    const pause = useSelector(selectBreak);
+    const timerLenght = useSelector(selectTimer);
+    const breakLenght = useSelector(selectBreak);
     const remainingTime = useSelector(selectRemainingTime);
 
     const handleTime = () => {
-        if (status === "start" && remainingTime === 0) {
-            stopCounting();
-            dispatch(changeStatus("break"));
-            startCounting();
-        } else if (status === "break" && remainingTime === 0) {
-            stopCounting();
-            dispatch(changeStatus("end"));
+        if (remainingTime === 0) {
+            if (status === "session") {
+                stopCounting();
+                dispatch(changeStatus("break"));
+                startCounting();
+            } else if (status === "break") {
+                stopCounting();
+                dispatch(changeStatus("end"));
+            }
         }
 
         let min = "00" + Math.floor(remainingTime / 60).toString();
@@ -60,7 +57,7 @@ export function Pomodoro() {
 
     const handleClick = () => {
         if (status === "idle" || status === "pause") {
-            dispatch(changeStatus("start"));
+            dispatch(changeStatus("session"));
             startCounting();
         } else {
             dispatch(changeStatus("pause"));
@@ -75,7 +72,7 @@ export function Pomodoro() {
                 {/* SESSION */}
                 <div className={styles.sessionContainer}>
                     <h3 id="session-label">Timer</h3>
-                    <h4 id="session-length">{timer}</h4>
+                    <h4 id="session-length">{timerLenght}</h4>
                     <div
                         id="session-increment"
                         className={styles.buttons}
@@ -94,7 +91,7 @@ export function Pomodoro() {
                 {/* BREAK */}
                 <div className={styles.breakContainer}>
                     <h3 id="break-label">Break</h3>
-                    <h4 id="break-length">{pause}</h4>
+                    <h4 id="break-length">{breakLenght}</h4>
                     <div
                         id="break-increment"
                         className={styles.buttons}
@@ -144,11 +141,11 @@ export function Pomodoro() {
                 </div>
                 <div className={styles.pomodoroLeft}></div>
                 <div className={styles.pomodoroRight}></div>
-                <h1 id="timer-label">PomoTimer</h1>
+                <h1 id="timer-logo">PomoTimer</h1>
                 <div id="time-left" className={styles.timerDisplay}>
-                    {/* {`${min}:${sec}`} */}
                     {handleTime()}
                 </div>
+                <h6 id="timer-label">{status.toUpperCase()}</h6>
             </div>
         </div>
     );

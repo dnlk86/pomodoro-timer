@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     timer: 25,
     break: 5,
-    status: "idle", // status: idle, start, pause, break, end
+    status: "idle", // status: idle, session, pause, break, end
     remainingTime: 1500, // seconds
+    paused: false,
 };
 
 export const PomodoroSlice = createSlice({
@@ -20,8 +21,8 @@ export const PomodoroSlice = createSlice({
                     state.remainingTime = state.timer * 60;
                     console.log("idle");
                     break;
-                case "start":
-                    console.log("start");
+                case "session":
+                    console.log("session");
                     break;
                 case "pause":
                     console.log("pause");
@@ -32,6 +33,8 @@ export const PomodoroSlice = createSlice({
                     break;
                 case "end":
                     console.log("time is up!");
+                    break;
+                default:
                     break;
             }
         },
