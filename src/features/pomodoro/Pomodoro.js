@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
     changeStatus,
+    changeIsPaused,
     decrement,
     increment,
     countdown,
@@ -9,6 +10,7 @@ import {
     selectBreak,
     selectStatus,
     selectRemainingTime,
+    selectIsPaused,
 } from "./pomodoroSlice";
 import styles from "./Pomodoro.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,16 +23,16 @@ export function Pomodoro() {
     const timerLenght = useSelector(selectTimer);
     const breakLenght = useSelector(selectBreak);
     const remainingTime = useSelector(selectRemainingTime);
+    const isPaused = useSelector(selectIsPaused);
 
     const handleTime = () => {
-        if (remainingTime === 0) {
+        if (remainingTime < 0) {
+            stopCounting();
             if (status === "session") {
-                stopCounting();
                 dispatch(changeStatus("break"));
                 startCounting();
             } else if (status === "break") {
-                stopCounting();
-                dispatch(changeStatus("end"));
+                dispatch(changeStatus("session"));
             }
         }
 
@@ -56,11 +58,11 @@ export function Pomodoro() {
     }
 
     const handleClick = () => {
-        if (status === "idle" || status === "pause") {
-            dispatch(changeStatus("session"));
+        if (isPaused) {
+            dispatch(changeIsPaused(false));
             startCounting();
         } else {
-            dispatch(changeStatus("pause"));
+            dispatch(changeIsPaused(true));
             stopCounting();
         }
     };
@@ -113,7 +115,7 @@ export function Pomodoro() {
                     className={styles.start}
                     onClick={handleClick}
                 >
-                    {status === "idle" || status === "pause" ? (
+                    {isPaused ? (
                         <FontAwesomeIcon icon={faPlay} />
                     ) : (
                         <FontAwesomeIcon icon={faPause} />
@@ -124,8 +126,8 @@ export function Pomodoro() {
                     id="reset"
                     className={styles.reset}
                     onClick={() => {
-                        stopCounting(interval);
-                        dispatch(changeStatus("idle"));
+                        stopCounting();
+                        dispatch(changeStatus("session"));
                     }}
                 >
                     <FontAwesomeIcon icon={faRotate} />

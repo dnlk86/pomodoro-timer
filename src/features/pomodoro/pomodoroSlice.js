@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     timer: 25,
     break: 5,
-    status: "idle", // status: idle, session, pause, break, end
+    status: "session", // status: session, break
     remainingTime: 1500, // seconds
-    paused: false,
+    isPaused: true,
 };
 
 export const PomodoroSlice = createSlice({
@@ -15,28 +15,24 @@ export const PomodoroSlice = createSlice({
         changeStatus: (state, action) => {
             state.status = action.payload;
             switch (action.payload) {
-                case "idle":
-                    state.timer = 25;
-                    state.break = 5;
-                    state.remainingTime = state.timer * 60;
-                    console.log("idle");
-                    break;
                 case "session":
+                    state.timer = initialState.timer;
+                    state.break = initialState.break;
+                    state.remainingTime = initialState.remainingTime;
+                    state.isPaused = initialState.isPaused;
                     console.log("session");
-                    break;
-                case "pause":
-                    console.log("pause");
                     break;
                 case "break":
                     state.remainingTime = state.break * 60;
                     console.log("break");
                     break;
-                case "end":
-                    console.log("time is up!");
-                    break;
                 default:
                     break;
             }
+        },
+        changeIsPaused: (state, action) => {
+            state.isPaused = action.payload;
+            console.log(`pause: ${state.isPaused}`);
         },
         increment: (state, action) => {
             if (state[action.payload] < 60) {
@@ -51,7 +47,7 @@ export const PomodoroSlice = createSlice({
             }
         },
         countdown: (state) => {
-            if (state.remainingTime > 0) {
+            if (state.remainingTime >= 0) {
                 state.remainingTime -= 1;
                 console.log(state.remainingTime);
             }
@@ -59,12 +55,13 @@ export const PomodoroSlice = createSlice({
     },
 });
 
-export const { changeStatus, increment, decrement, countdown } =
+export const { changeStatus, increment, decrement, countdown, changeIsPaused } =
     PomodoroSlice.actions;
 
 export const selectTimer = (state) => state.pomodoro.timer;
 export const selectBreak = (state) => state.pomodoro.break;
 export const selectStatus = (state) => state.pomodoro.status;
 export const selectRemainingTime = (state) => state.pomodoro.remainingTime;
+export const selectIsPaused = (state) => state.pomodoro.isPaused;
 
 export default PomodoroSlice.reducer;
