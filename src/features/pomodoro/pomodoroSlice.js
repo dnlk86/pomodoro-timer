@@ -5,6 +5,7 @@ const initialState = {
     break: 5,
     status: "session", // status: session, break
     remainingTime: 1500, // seconds
+    timerOn: false,
     isPaused: true,
 };
 
@@ -19,6 +20,7 @@ export const PomodoroSlice = createSlice({
                     state.timer = initialState.timer;
                     state.break = initialState.break;
                     state.remainingTime = initialState.remainingTime;
+                    state.timerOn = initialState.timerOn;
                     state.isPaused = initialState.isPaused;
                     console.log("session");
                     break;

@@ -27,10 +27,11 @@ export function Pomodoro() {
     const isPaused = useSelector(selectIsPaused);
 
     const handleTime = () => {
-        if (remainingTime < 0) {
+        if (remainingTime === 0) {
+            document.getElementById("beep").play();
+        } else if (remainingTime < 0) {
             stopCounting();
             if (status === "session") {
-                document.getElementById("beep").play();
                 dispatch(changeStatus("break"));
                 startCounting();
             } else if (status === "break") {
@@ -71,11 +72,26 @@ export function Pomodoro() {
 
     return (
         <div className={styles.pomodoroBackground}>
+            {/* POMODORO */}
+            <div className={styles.pomodoroBody}>
+                <div className={styles.leavesContainer}>
+                    <div className={styles.leafLeft}></div>
+                    <div className={styles.leafMiddle}></div>
+                    <div className={styles.leafRight}></div>
+                </div>
+                <div className={styles.pomodoroLeft}></div>
+                <div className={styles.pomodoroRight}></div>
+                <h1 id="timer-logo">PomoTimer</h1>
+                <div className={styles.timerDisplay}>
+                    <div id="time-left">{handleTime()}</div>
+                    <div id="timer-label">{status.toUpperCase()}</div>
+                </div>
+            </div>
             {/* CONTROLS */}
             <div className={styles.controls}>
                 {/* SESSION */}
                 <div className={styles.sessionContainer}>
-                    <h3 id="session-label">Timer</h3>
+                    <h3 id="session-label">SESSION</h3>
                     <h4 id="session-length">{timerLenght}</h4>
                     <div
                         id="session-increment"
@@ -94,7 +110,7 @@ export function Pomodoro() {
                 </div>
                 {/* BREAK */}
                 <div className={styles.breakContainer}>
-                    <h3 id="break-label">Break</h3>
+                    <h3 id="break-label">BREAK</h3>
                     <h4 id="break-length">{breakLenght}</h4>
                     <div
                         id="break-increment"
@@ -137,22 +153,7 @@ export function Pomodoro() {
                 >
                     <FontAwesomeIcon icon={faRotate} />
                 </div>
-            </div>
-
-            {/* POMODORO */}
-            <div className={styles.pomodoroBody}>
-                <div className={styles.leavesContainer}>
-                    <div className={styles.leafLeft}></div>
-                    <div className={styles.leafMiddle}></div>
-                    <div className={styles.leafRight}></div>
-                </div>
-                <div className={styles.pomodoroLeft}></div>
-                <div className={styles.pomodoroRight}></div>
-                <h1 id="timer-logo">PomoTimer</h1>
-                <div id="time-left" className={styles.timerDisplay}>
-                    {handleTime()}
-                </div>
-                <h6 id="timer-label">{status.toUpperCase()}</h6>
+                {/* AUDIO */}
                 <audio id="beep" src={alarm} preload="auto"></audio>
             </div>
         </div>

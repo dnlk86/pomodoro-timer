@@ -1,4 +1,4 @@
-/* MAIN CONTAINER */
+/* OUTER CONTAINER */
 .pomodoroBackground {
     position: relative;
     width: 485px;
@@ -11,19 +11,18 @@
     align-items: center;
 }
 
-/* POMODORO TIMER */
+/* POMODORO BODY */
 .pomodoroBody {
     position: absolute;
-    top: 350px;
     z-index: 10;
 }
 
 .pomodoroLeft {
     position: absolute;
     top: -100px;
-    left: -160px;
-    width: 175px;
-    height: 200px;
+    left: -200px;
+    width: 225px;
+    height: 250px;
     background-color: var(--pomodoro-color);
     border-radius: 50% 30% 0 50%;
 }
@@ -33,8 +32,8 @@
     position: absolute;
     top: -5px;
     left: -5px;
-    width: calc(175px + 5%);
-    height: calc(200px + 5%);
+    width: 230px;
+    height: 260px;
     background-color: white;
     border-radius: 50% 30% 0 50%;
     z-index: -999;
@@ -43,9 +42,9 @@
 .pomodoroRight {
     position: absolute;
     top: -100px;
-    right: -160px;
-    width: 175px;
-    height: 200px;
+    right: -200px;
+    width: 225px;
+    height: 250px;
     background-color: var(--pomodoro-color);
     border-radius: 30% 50% 50% 0;
 }
@@ -55,13 +54,14 @@
     position: absolute;
     top: -5px;
     right: -5px;
-    width: calc(175px + 5%);
-    height: calc(200px + 5%);
+    width: 230px;
+    height: 260px;
     background-color: white;
     border-radius: 30% 50% 50% 0;
     z-index: -999;
 }
 
+/* TOP LEAVES */
 .leavesContainer {
     position: relative;
     top: -75px;
@@ -69,7 +69,7 @@
     z-index: -1;
 }
 
-.leavesContainer::before {
+/* .leavesContainer::before {
     content: "";
     position: absolute;
     top: -110px;
@@ -78,7 +78,7 @@
     border-radius: 25%;
     width: 160px;
     height: 150px;
-}
+} */
 
 .leafLeft {
     position: absolute;
@@ -92,11 +92,12 @@
     border-left-color: var(--leaf-color);
     z-index: 10;
     transform: rotate(-30deg);
+    border-radius: 25%;
 }
 
 .leafMiddle {
     position: absolute;
-    top: -200px;
+    top: -190px;
     width: 0px;
     height: 0px;
     border-top: 100px solid transparent;
@@ -118,31 +119,25 @@
     border-left-color: transparent;
     z-index: 10;
     transform: rotate(30deg);
+    border-radius: 25%;
 }
 
 /* TIMER */
 .timerDisplay {
     position: absolute;
-    top: -20px;
+    top: -10px;
     left: -100px;
     width: 200px;
     height: 70px;
     background-color: var(--display-background);
     border: 3px solid white;
     border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.5rem;
-    color: white;
-    text-align: center;
 }
 
 /* CONTROLS */
-
 .controls {
     position: absolute;
-    top: 30px;
+    top: 320px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -159,41 +154,42 @@
         "label label"
         "time time"
         "inc dec";
-    gap: 0 5px;
-    width: 104px;
-    height: 10px;
+    width: 80px;
+    height: 1px;
     z-index: 99999;
     color: white;
 }
 
+/* START / RESET */
 .start,
 .reset {
     position: absolute;
-    top: 130px;
-    width: 75px;
-    height: 75px;
+    top: -85px;
+    width: 60px;
+    height: 60px;
     background-color: transparent;
-    border: 5px solid white;
+    border: 3px solid white;
     border-radius: 50%;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    z-index: 9999;
 }
 
 .start:hover,
 .reset:hover {
-    color: var(--leaf-color);
-    border-color: var(--leaf-color);
+    color: var(--hover-color);
+    border-color: var(--hover-color);
     opacity: 0.75;
     cursor: pointer;
 }
 
 .start {
-    left: -50px;
+    left: -30px;
 }
 
 .reset {
-    right: -50px;
+    right: -30px;
 }
