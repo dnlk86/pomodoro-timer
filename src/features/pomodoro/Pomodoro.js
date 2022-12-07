@@ -27,6 +27,13 @@ export function Pomodoro() {
     const isPaused = useSelector(selectIsPaused);
 
     const handleTime = () => {
+        let docstyle = document.documentElement.style;
+        if (remainingTime <= 10) {
+            docstyle.setProperty(
+                "--background-animation-gradient",
+                "conic-gradient(#ED0000 90deg, #FF7575 180deg, white 360deg)"
+            );
+        }
         if (remainingTime === 0) {
             document.getElementById("beep").play();
         } else if (remainingTime < 0) {
@@ -34,6 +41,10 @@ export function Pomodoro() {
             if (status === "session") {
                 dispatch(changeStatus("break"));
                 startCounting();
+                docstyle.setProperty(
+                    "--background-animation-gradient",
+                    "conic-gradient(#219ebc 90deg, #8ecae6 180deg, white 360deg)"
+                );
             } else if (status === "break") {
                 dispatch(changeStatus("session"));
             }
@@ -61,12 +72,23 @@ export function Pomodoro() {
     }
 
     const handleClick = () => {
+        let docstyle = document.documentElement.style;
         if (isPaused) {
             dispatch(changeIsPaused(false));
             startCounting();
+            docstyle.setProperty("--background-animation-state", "running");
+            docstyle.setProperty(
+                "--background-animation-gradient",
+                "conic-gradient(#219ebc 90deg, #8ecae6 180deg, white 360deg)"
+            );
         } else {
             dispatch(changeIsPaused(true));
             stopCounting();
+            docstyle.setProperty("--background-animation-state", "paused");
+            docstyle.setProperty(
+                "--background-animation-gradient",
+                "conic-gradient(#ED7600 90deg, #FFBA75 180deg, white 360deg)"
+            );
         }
     };
 

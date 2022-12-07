@@ -15,8 +15,9 @@
     height: 500px;
     border-radius: 50%;
     z-index: -1;
-    background-image: var(--timer-circle);
+    background-image: var(--background-animation-gradient);
     animation: rotate 10s linear infinite;
+    animation-play-state: var(--background-animation-state);
 }
 
 @keyframes rotate {

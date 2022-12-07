@@ -7,8 +7,13 @@
     --leaf-color: #006400;
     --pomodoro-color: #ff0000;
     --display-background: #181818;
-    --timer-circle: conic-gradient(#219ebc 90deg, #8ecae6 180deg, white 360deg);
     --hover-color: #4c4c4c;
+    --background-animation-state: running;
+    --background-animation-gradient: conic-gradient(
+        #656565 90deg,
+        #b3b3b3 180deg,
+        white 360deg
+    );
 }
 
 * {

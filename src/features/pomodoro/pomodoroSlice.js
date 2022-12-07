@@ -22,6 +22,15 @@ export const PomodoroSlice = createSlice({
                     state.remainingTime = initialState.remainingTime;
                     state.timerOn = initialState.timerOn;
                     state.isPaused = initialState.isPaused;
+                    let docstyle = document.documentElement.style;
+                    docstyle.setProperty(
+                        "--background-animation-state",
+                        "running"
+                    );
+                    docstyle.setProperty(
+                        "--background-animation-gradient",
+                        "conic-gradient(#656565 90deg, #b3b3b3 180deg, white 360deg)"
+                    );
                     console.log("session");
                     break;
                 case "break":
