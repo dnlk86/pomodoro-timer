@@ -110,3 +110,29 @@
     letter-spacing: 1px;
     color: white;
 }
+
+/* SIGNATURE */
+#signatureContainer {
+    height: 50px;
+    width: 150px;
+    position: absolute;
+    background-color: #181818;
+    bottom: 25px;
+    right: 25px;
+    border-radius: 15px;
+}
+
+#signatureContainer:hover {
+    border: 3px solid var(--pomodoro-color);
+}
+
+#signatureContainer a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 15px;
+    font-family: "Press Start 2P", cursive;
+    color: var(--pomodoro-color);
+    text-decoration: none;
+}

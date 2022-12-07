@@ -6,6 +6,14 @@ function App() {
     return (
         <div className="App">
             <Pomodoro />
+            <div id="signatureContainer">
+                <a
+                    href="https://github.com/dnlk86/pomodoro-timer"
+                    target={"_blank"}
+                >
+                    dnlk86
+                </a>
+            </div>
         </div>
     );
 }
