@@ -112,7 +112,15 @@ export function Pomodoro() {
             {/* CONTROLS */}
             <div className={styles.controls}>
                 {/* SESSION */}
-                <div className={styles.sessionContainer}>
+                <div
+                    className={styles.sessionContainer}
+                    style={{
+                        pointerEvents:
+                            remainingTime !== timerLenght * 60
+                                ? "none"
+                                : "auto",
+                    }}
+                >
                     <h3 id="session-label">SESSION</h3>
                     <h4 id="session-length">{timerLenght}</h4>
                     <div
@@ -131,7 +139,15 @@ export function Pomodoro() {
                     </div>
                 </div>
                 {/* BREAK */}
-                <div className={styles.breakContainer}>
+                <div
+                    className={styles.breakContainer}
+                    style={{
+                        pointerEvents:
+                            remainingTime !== timerLenght * 60
+                                ? "none"
+                                : "auto",
+                    }}
+                >
                     <h3 id="break-label">BREAK</h3>
                     <h4 id="break-length">{breakLenght}</h4>
                     <div
